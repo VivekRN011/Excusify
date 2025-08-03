@@ -40,6 +40,8 @@ import Excuse from '../models/Excuse.js';
 
 const router = express.Router();
 
+
+
 // Get a random excuse from all categories
 router.get('/', async (req, res) => {
   try {

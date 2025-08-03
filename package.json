@@ -1,0 +1,13 @@
+{
+  "name": "excusify",
+  "version": "1.0.0",
+  "description": "��#\u0000 \u0000E\u0000x\u0000c\u0000u\u0000s\u0000i\u0000f\u0000y\u0000\r\u0000 \u0000",
+  "main": "index.js",
+  "scripts": {
+    "build": "npm install --prefix frontend && npm install --prefix backend && npm run build --prefix frontend ",
+    "start": "npm run start --prefix backend"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
