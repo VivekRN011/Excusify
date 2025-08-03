@@ -19,6 +19,7 @@ mongoose.connect(process.env.MONGO_URI)
 // Routes
 app.use("/api/excuses", excuseRoutes);
 
+/*
 app.get('/seed', async (req, res) => {
   
   await Excuse.insertMany([
@@ -30,7 +31,7 @@ app.get('/seed', async (req, res) => {
   ]);
   res.send("Test data inserted!");
 });
-
+*/
 
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

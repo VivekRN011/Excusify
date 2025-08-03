@@ -1,0 +1,101 @@
+@keyframes wiggle {
+  0%, 100% { transform: rotate(-8deg) scale(1.08); }
+  20% { transform: rotate(8deg) scale(1.12); }
+  40% { transform: rotate(-6deg) scale(1.10); }
+  60% { transform: rotate(6deg) scale(1.14); }
+  80% { transform: rotate(-4deg) scale(1.12); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  25% { transform: translateY(-24px); }
+  50% { transform: translateY(12px); }
+  75% { transform: translateY(-18px); }
+}
+
+@keyframes rainbow {
+  0% { color: #ff5252; }
+  20% { color: #ffb347; }
+  40% { color: #47ffb3; }
+  60% { color: #47a3ff; }
+  80% { color: #b347ff; }
+  100% { color: #ff5252; }
+}
+
+@keyframes bgmove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.App {
+  min-height: 100vh;
+  background: linear-gradient(270deg, #fffde7, #e0f7fa, #ffe29a, #ffb347, #e0f7fa, #fffde7);
+  background-size: 1200% 1200%;
+  animation: bgmove 18s ease-in-out infinite;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  padding: 32px 0;
+  font-family: 'Comic Sans MS', Comic Sans, cursive;
+  overflow-x: hidden;
+}
+
+.excusify-title {
+  font-size: 3.2rem;
+  margin-bottom: 16px;
+  animation: wiggle 1.2s infinite, rainbow 3s linear infinite;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  user-select: none;
+  letter-spacing: 2px;
+}
+
+.floating {
+  animation: float 2.5s ease-in-out infinite;
+  display: inline-block;
+  filter: drop-shadow(0 2px 8px #ffb34788);
+}
+
+.emoji-float {
+  position: fixed;
+  z-index: 10;
+  pointer-events: none;
+  opacity: 0.8;
+  animation: float 3.5s ease-in-out infinite alternate;
+}
+
+.emoji-float-1 {
+  left: 8vw;
+  top: 12vh;
+  font-size: 2.5rem;
+  animation-delay: 0s;
+}
+.emoji-float-2 {
+  right: 10vw;
+  top: 18vh;
+  font-size: 2.8rem;
+  animation-delay: 1.2s;
+}
+.emoji-float-3 {
+  left: 18vw;
+  bottom: 10vh;
+  font-size: 2.2rem;
+  animation-delay: 2.1s;
+}
+.emoji-float-4 {
+  right: 16vw;
+  bottom: 14vh;
+  font-size: 2.7rem;
+  animation-delay: 0.7s;
+}
+
+hr {
+  width: 60%;
+  border: none;
+  border-top: 3px dashed #ffb347;
+  margin: 36px 0 24px 0;
+  animation: rainbow 4s linear infinite;
+}
