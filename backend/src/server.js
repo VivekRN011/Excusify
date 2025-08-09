@@ -1,4 +1,4 @@
-// backend/server.js
+/*// backend/server.js
 import express from 'express';
 import mongoose from 'mongoose';
 import excuseRoutes from './routes/excuseRoutes.js';
@@ -9,14 +9,17 @@ import path from 'path';
 
 dotenv.config();
 
-const __dirname = path.resolve();
-const app = express();
+
+
 if (process.env.NODE_ENV !== 'production') {
   app.use(cors({
     origin: 'http://localhost:5173', // Adjust this to your frontend URL
     credentials: true
   }));
 }
+const __dirname = path.resolve();
+
+
 
 app.use(express.json());
 
@@ -52,8 +55,60 @@ app.get('/seed', async (req, res) => {
   ]);
   res.send("Test data inserted!");
 });
-*/
+
 
 app.get('/favicon.ico', (req, res) => res.status(204).end());
+const PORT = process.env.PORT || 5001;
+app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+
+
+*/
+
+// backend/server.js
+import express from 'express';
+import mongoose from 'mongoose';
+import excuseRoutes from './routes/excuseRoutes.js';
+import cors from 'cors';
+import dotenv from 'dotenv';
+import Excuse from './models/Excuse.js';
+import path from 'path';
+
+dotenv.config();
+
+const __dirname = path.resolve();
+const app = express();
+
+if (process.env.NODE_ENV !== 'production') {
+  app.use(cors({
+    origin: 'http://localhost:5173',
+    credentials: true
+  }));
+}
+
+app.use(express.json());
+
+mongoose.connect(process.env.MONGO_URI)
+  .then(() => console.log("MongoDB connected"))
+  .catch(err => console.log(err));
+
+// Routes BEFORE the catch-all
+app.use("/api/excuses", excuseRoutes);
+
+app.get('/', (req, res) => {
+  res.send('👋 Excusify API is running!');
+});
+
+app.get('/favicon.ico', (req, res) => res.status(204).end());
+
+// Production static files and catch-all
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, '../frontend/dist')));
+  
+  // Catch-all ONLY in production
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+  });
+}
+
 const PORT = process.env.PORT || 5001;
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

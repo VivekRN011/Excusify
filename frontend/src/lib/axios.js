@@ -1,7 +1,24 @@
+/*
 import axios from 'axios';
 
 
 const BASE_URL = import.meta.env.MODE === "development" ? 'http://localhost:5001/api/excuses' : "/api"; // Use environment variable or default to local URL
+const api = axios.create({
+  baseURL: BASE_URL,
+});
+
+export default api;
+
+*/
+
+import axios from 'axios';
+
+const BASE_URL = import.meta.env.MODE === "development" 
+  ? '/api/excuses'  // Use proxy in development
+  : 'https://your-render-app-url.com/api/excuses'; // Your actual production URL
+
+console.log('Axios Base URL:', BASE_URL); // Debug log
+
 const api = axios.create({
   baseURL: BASE_URL,
 });
